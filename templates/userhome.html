@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+<div class="collapse navbar-collapse" id="navbarResponsive">
+	<ul class="navbar-nav ml-auto">
+		<li class="nav-item active">
+			<a class="btn btn-outline-dark text-white" href="{{ url_for('userhome') }}">Home</a>
+			<span class="sr-only">(current)</span>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link text-white" href="{{ url_for('weatherinformation') }}">Weather information</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link text-white" href="{{ url_for('userabout') }}">About</a>
+		</li>
+	</ul>
+</div>
+{% endblock nav%}
+
+{% block body %}
+</br></br></br>
+
+<div class="row h-100 justify-content-center text-center">
+{% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" style="width:50%">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          </div>
+		  </br></br>
+<div class="row justify-content-center blog-grids">
+	
+	<div class="card crd-space crd-clr">
+	<a href="{{url_for('croppredict')}}">
+		<img class="crdimg" src="{{url_for('static', filename='images/service_1.jpg')}}" alt="Avatar" style="width:100%;">
+		</a>
+		<a href="{{ url_for('croppredict') }}">
+		<div class="crdcontainer">
+		</br>
+		<h4 class="text-shadow">CROP </h4>
+		<p class="mt-2 text-link"> Recommendation about the type of crops to be cultivated which is best suited
+							for the respective conditions.</p>
+		</div></a>
+	</div>
+	
+	<div class="card crd-space crd-clr">
+	<a href="{{ url_for('fertilizerpredict') }}">
+		<img class="crdimg" src="{{url_for('static', filename='images/service_2.jpg')}}" alt="Avatar" style="width:100%;">
+		</a>
+		<a href="{{ url_for('fertilizerpredict') }}">
+		<div class="crdcontainer">
+		</br>
+		<h4 class="text-shadow">FERTILIZER </h4>
+		<p class="mt-2 text-link"> Recommendation about the type of fertilizer best suited for the particular soil
+							and the recommended crop.</p>
+		</div>
+		</a>
+	</div>
+	
+	<div class="card crd-space crd-clr">
+	<a href="{{ url_for('diseasepredict') }}">
+		<img class="crdimg" src="{{url_for('static', filename='images/service_3.jpg')}}" alt="Avatar" style="width:100%;">
+		</a>
+		<a href="{{ url_for('diseasepredict') }}">
+		<div class="crdcontainer">
+		</br>
+		<h4 class="text-shadow">CROP DISEASE </h4>
+		<p class="mt-2 text-link"> Predicting the name and causes of crop disease and suggestions to cure it.</p>
+		</div>
+		</a>
+	</div>
+	
+</div>	
+		  
+{% endblock %}
+{%block footer %}
+<footer class="footer" style="background-color: rgba(38,72,43,0.2);">
+</br>
+	<div class="container" >
+		<h2 class="logo2 text-center">
+				<a href="{{ url_for('userhome') }}">
+					CROP ADVISOR
+				</a>
+			</h2>
+        
+    </div>
+	</br>
+</footer>
+
+{%endblock footer%}
