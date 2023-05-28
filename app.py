@@ -6,7 +6,7 @@ from crop_advisor.predict_methods import fert_recommend,crop_recommendation_mode
 import numpy as np
 import os
 from PIL import Image
-
+from predict import predict_crop
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config['UPLOADS'] = 'static/images'
@@ -89,62 +89,63 @@ def croppredict():
             # temperature, humidity = weather_fetch(city)
             # data = np.array([[N, P, K, temperature, humidity, ph, rainfall,soil[soiltype]]])
             # prediction = crop_recommendation_model(data)
-            import random
-            mylist = [
-                            "Apple",
-                            "Banana",
-                            "Cherry",
-                            "Berry",
-                            'Orange',
-                            'Mango',
-                            'Grapes',
-                            'Watermelon',
-                            'Rice',
-                            'Wheat',
-                            'Maize',
-                            'Bajra',
-                            'Jowar',
-                            'Ragi',
-                            'Barley',
-                            'Sorghum',
-                            'Tur (Pigeon Pea)',
-                            'Urad',
-                            'Moong',
-                            'Chana (Chickpea)',
-                            'Masoor',
-                            'Arhar (Pigeon Pea)',
-                            'Soybean',
-                            'Groundnut',
-                            'Sunflower',
-                            'Safflower',
-                            'Niger',
-                            'Castor',
-                            'Linseed',
-                            'Cotton',
-                            'Jute',
-                            'Sugarcane',
-                            'Tea',
-                            'Coffee',
-                            'Rubber',
-                            'Spices',
-                            'Fruits',
-                            'Vegetables',
-                            'Oilseeds',
-                            'Pulses',
-                            'Tobacco',
-                            'Cashew',
-                            'Coconut',
-                            'Arecanut',
-                            'Pepper',
-                            'Ginger',
-                            'Turmeric',
+            # import random
+            # mylist = [
+            #                 "Apple",
+            #                 "Banana",
+            #                 "Cherry",
+            #                 "Berry",
+            #                 'Orange',
+            #                 'Mango',
+            #                 'Grapes',
+            #                 'Watermelon',
+            #                 'Rice',
+            #                 'Wheat',
+            #                 'Maize',
+            #                 'Bajra',
+            #                 'Jowar',
+            #                 'Ragi',
+            #                 'Barley',
+            #                 'Sorghum',
+            #                 'Tur (Pigeon Pea)',
+            #                 'Urad',
+            #                 'Moong',
+            #                 'Chana (Chickpea)',
+            #                 'Masoor',
+            #                 'Arhar (Pigeon Pea)',
+            #                 'Soybean',
+            #                 'Groundnut',
+            #                 'Sunflower',
+            #                 'Safflower',
+            #                 'Niger',
+            #                 'Castor',
+            #                 'Linseed',
+            #                 'Cotton',
+            #                 'Jute',
+            #                 'Sugarcane',
+            #                 'Tea',
+            #                 'Coffee',
+            #                 'Rubber',
+            #                 'Spices',
+            #                 'Fruits',
+            #                 'Vegetables',
+            #                 'Oilseeds',
+            #                 'Pulses',
+            #                 'Tobacco',
+            #                 'Cashew',
+            #                 'Coconut',
+            #                 'Arecanut',
+            #                 'Pepper',
+            #                 'Ginger',
+            #                 'Turmeric',
 
-                            ]
-            print("*" * 100)
-            print(random.choice(mylist))
-            print("#" * 100)
-            # print("Prediction:-",prediction)
-            prediction=random.choice(mylist)
+            #                 ]
+            # print("*" * 100)
+            # print(random.choice(mylist))
+            # print("#" * 100)
+            # # print("Prediction:-",prediction)
+            # prediction=random.choice(mylist)
+            prediction = predict_crop()
             return render_template('cropresult.html', recommendation=prediction, title='Crop Recommendation')
         else:
             flash("Sorry we couldn't process your request currently.Please check your internet connection and try again",'danger')

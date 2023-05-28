@@ -396,6 +396,7 @@ li > a:only-child:after { content: ''; }
     -moz-background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
+	width: 100%;
 }
 
 .banner-top3 {
